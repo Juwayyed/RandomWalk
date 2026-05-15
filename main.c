@@ -9,7 +9,7 @@
 
 int main()
 {
-    int i, j, k, movement;
+    int i, j, k = 0, movement;
     char matx[N][N];
     char ch, letter;
     char letters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -28,36 +28,25 @@ int main()
                     matx[j][i] = letters[0];
                 } else {    //Gen random num here then type the letters sequentially
                     //Populate all other positions with dots
-                    matx[j][i] = '.';
+                    //matx[j][i] = '.';
                     /* Generating A Random Number Between 0 and 3 */
                     srand((unsigned)time(NULL));
                     movement = rand() % NUM_DIRECTIONS;
                     //printf("%d\n", movement);
-                    k++;
-                    switch(movement) {
-                    case 0:
-                    i > 0 ? matx[j][i-1] = letters[k] : exit;
-                    printf("%c", letters[k]);
-                    break;
-                    case 1:
-                    j > 0 ? matx[j-1][i] = letters[k] : exit;
-                    matx[j][i] = letters[k];
-                    printf("%c", letters[k]);
-                    break;
-                    case 2:
-                    j < 11 ? matx[j+1][i] = letters[k] : exit;
-                    matx[j][i] = letters[k];
-                    printf("%c", letters[k]);
-                    break;
-                    case 3:
-                    i < 11 ? matx[j][i+1] = letters[k] : exit;
-                    matx[j][i] = letters[k];
-                    printf("%c", letters[k]);
-                    break;
-                  }
+                    if(k < 28) {
+                        k++;
+                        if(movement == 0 && i > 0) {
+                            matx[j][i-1] = letters[k];
+                        } else if(movement == 1 && j > 0) {
+                            matx[j-1][i] = letters[k];
+                        } else if(movement == 2 && j < 10) {
+                            matx[j+1][i] = letters[k];
+                        } else if(movement == 3 && i < 10) {
+                            matx[j][i+1] = letters[k];
+                        }
+                    }
                 }
             }
-
             printf("%c", matx[j][i]);
         }
         printf("\n");
