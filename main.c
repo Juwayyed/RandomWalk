@@ -14,39 +14,12 @@ int main()
     char ch, letter;
     char letters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-    /* Initializing The Random Walk */
-    printf("Press x to start The Random Walk: \n");
-    while(ch!='x') {
-        ch = getchar();
-    }
+
 
     /* Populating The Matrix With Dots */
     for(i = 0 ; i < N ; i++) {
         for(j = 0 ; j < N ; j++) {
-            if(ch == 'x') {
-                if(i == 0 && j == 0) {
-                    matx[j][i] = letters[0];
-                } else {    //Gen random num here then type the letters sequentially
-                    //Populate all other positions with dots
-                    //matx[j][i] = '.';
-                    /* Generating A Random Number Between 0 and 3 */
-                    srand((unsigned)time(NULL));
-                    movement = rand() % NUM_DIRECTIONS;
-                    //printf("%d\n", movement);
-                    if(k < 28) {
-                        k++;
-                        if(movement == 0 && i > 0) {
-                            matx[j][i-1] = letters[k];
-                        } else if(movement == 1 && j > 0) {
-                            matx[j-1][i] = letters[k];
-                        } else if(movement == 2 && j < 10) {
-                            matx[j+1][i] = letters[k];
-                        } else if(movement == 3 && i < 10) {
-                            matx[j][i+1] = letters[k];
-                        }
-                    }
-                }
-            }
+            matx[j][i] = '.';
             printf("%c", matx[j][i]);
         }
         printf("\n");
@@ -57,18 +30,40 @@ int main()
 
 
 /**************/
+/* Initializing The Random Walk */
+    printf("\n\n\nPress x to start The Random Walk: \n");
+    while(ch!='x') {
+        ch = getchar();
+    }
 
-/* Starting The Sequence */
-/*
-                for(k = 0 ; k < sizeof(letters) ; k++) {
-
-
-                    if(i > 0 || j > 0) {
-
-                        printf("%c", matx[j][i]);
+    for(i = 0 ; i < N ; i++) {
+        for(j = 0 ; j < N ; j++) {
+            if(ch == 'x') {
+                if(i == 0 && j == 0) {
+                    matx[j][i] = letters[0];
+                } else {
+                    srand((unsigned)time(NULL));
+                    movement = rand() % NUM_DIRECTIONS;
+                    //printf("%d\n", movement);
+                    if(k < 28) {
+                        k++;
+                        //Validating Boundries
+                        if(movement == 0 && i > 0 && matx[j][i-1] == '.') {
+                            matx[j][i-1] = letters[k];
+                        } else if(movement == 1 && j > 0 && matx[j-1][i] == '.') {
+                            matx[j-1][i] = letters[k];
+                        } else if(movement == 2 && j < 10 && matx[j+1][i] == '.') {
+                            matx[j+1][i] = letters[k];
+                        } else if(movement == 3 && i < 10 && matx[j][i+1] == '.') {
+                            matx[j][i+1] = letters[k];
+                        }
                     }
                 }
-*/
+            }
+            printf("%c", matx[j][i]);
+        }
+        printf("\n");
+    }
 /*************/
     return 0;
 }
