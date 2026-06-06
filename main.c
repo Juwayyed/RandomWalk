@@ -12,7 +12,7 @@ int main()
     int i, j, k = 0, movement;
     char matx[N][N];
     char ch, letter;
-    char letters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    char letters[27] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 
 
@@ -48,15 +48,17 @@ int main()
                     if(k < 28) {
                         k++;
                         //Validating Boundries
-                        if(movement == 0 && i > 0 && matx[j][i-1] == '.') {
+                        if(movement == 0 && i > 0 && matx[j][i] == '.') {
                             matx[j][i-1] = letters[k];
-                        } else if(movement == 1 && j > 0 && matx[j-1][i] == '.') {
+                        } else if(movement == 1 && j > 0 && matx[j][i] == '.') {
                             matx[j-1][i] = letters[k];
                         } else if(movement == 2 && j < 10 && matx[j+1][i] == '.') {
                             matx[j+1][i] = letters[k];
                         } else if(movement == 3 && i < 10 && matx[j][i+1] == '.') {
                             matx[j][i+1] = letters[k];
                         }
+                    } else {
+                        matx[j][i] = '.';
                     }
                 }
             }
