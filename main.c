@@ -42,19 +42,24 @@ int main()
                 if(i == 0 && j == 0) {
                     matx[j][i] = letters[0];
                 } else {
+                    /* Bug Here - Same Random Number Repeated every time*/
                     srand((unsigned)time(NULL));
                     movement = rand() % NUM_DIRECTIONS;
-                    //printf("%d\n", movement);
+                    printf("%d\n", movement);
                     if(k < 28) {
                         k++;
                         //Validating Boundries
-                        if(movement == 0 && i > 0 && matx[j][i] == '.') {
+                        if(movement == 0 && i > 0) {
+                            //printf("Movement = %d", movement);
                             matx[j][i-1] = letters[k];
-                        } else if(movement == 1 && j > 0 && matx[j][i] == '.') {
+                        } else if(movement == 1 && j > 0) {
+                            //printf("Movement = %d", movement);
                             matx[j-1][i] = letters[k];
-                        } else if(movement == 2 && j < 10 && matx[j+1][i] == '.') {
+                        } else if(movement == 2 && j < 10) {
+                            //printf("Movement = %d", movement);
                             matx[j+1][i] = letters[k];
-                        } else if(movement == 3 && i < 10 && matx[j][i+1] == '.') {
+                        } else if(movement == 3 && i < 10) {
+                            //printf("Movement = %d", movement);
                             matx[j][i+1] = letters[k];
                         }
                     } else {
